@@ -47,13 +47,14 @@ def chatbot_view(request):
         return JsonResponse({'response': response})
     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
+from app import predict_image
 
 def process_image(image):
     # Implement your image processing logic here
     # For example, use an image recognition library or a pre-trained model
     # to extract relevant information from the image
     # Return the extracted information as a search query string
-    search_query = "potato"  # Replace with actual logic
+    search_query = predict_image.makePrediction(image)  # Replace with actual logic
     return search_query
 
 def image_search(request):
