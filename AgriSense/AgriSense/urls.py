@@ -21,7 +21,10 @@ from app import views
 urlpatterns = [
     path('', views.index, name='login'),
     path('chatbot/', views.chatbot_view, name='chatbot'),
-    path('search_crops/', views.search_crops, name='search_crops'),  # Correctly reference search_crops view
+    path('search_crops/', views.search_crops, name='search_crops'),
+    path('send_message/', views.send_message, name='send_message'),
+    path('send_request/', views.send_request, name='send_request'),
+    path('image_search/', views.image_search, name='image_search'),
     # farmer
     path('farmer_chat/', views.farmer_chat, name='farmer_chat'),
     path('farmer_profile/', views.farmer_profile, name='farmer_profile'),
@@ -29,6 +32,8 @@ urlpatterns = [
     path('farmer_dashboard/', views.farmer_dashboard, name='farmer_dashboard'),
     path('farmer_notification/', views.farmer_notification, name='farmer_notification'),
     # expert
+    path('expert_chat/', views.expert_chat, name='expert_chat'),
+    path('expert_upload/', views.expert_upload, name='expert_upload'),
     path('expert_profile/', views.expert_profile, name='expert_profile'),
     path('expert_dashboard/', views.expert_dashboard, name='expert_dashboard'),
 ]

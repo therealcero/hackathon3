@@ -57,25 +57,3 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-
-// document.getElementById("search-form").addEventListener("submit", function(event) {
-//     event.preventDefault();
-//     const searchQuery = document.getElementById("search-crops").value;
-//     const searchUrl = "{% url 'search_crops' %}";
-
-//     fetch(searchUrl, {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/x-www-form-urlencoded",
-//             "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value
-//         },
-//         body: new URLSearchParams({
-//             "search_query": searchQuery
-//         })
-//     })
-//     .then(response => response.text())
-//     .then(html => {
-//         document.documentElement.innerHTML = html;
-//     })
-//     .catch(error => console.error('Error:', error));
-// });

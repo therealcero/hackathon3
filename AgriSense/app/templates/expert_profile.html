@@ -12,9 +12,9 @@
         <h1>AgriSense</h1>
         <nav>
             <ul>
-                <li><a href="expert_chat.html">Chatbox</a></li>
-                <li><a href="expert_profile.html">Profile</a></li>
-                <li><a href="expert_upload.html">Upload Articles</a></li>
+                <li><a href="{% url 'expert_chat' %}">Chatbox</a></li>
+                <li><a href="{% url 'expert_profile' %}">Profile</a></li>
+                <li><a href="{% url 'expert_upload' %}">Upload Articles</a></li>
             </ul>
         </nav>
     </header>
@@ -22,16 +22,17 @@
         <div class="container">
             <div class="card">
                 <h2>Profile</h2>
-                <form>
+                <form id="profileForm" method="POST" action="{% url 'farmer_profile_save' %}">
+                    {% csrf_token %}
                     <label for="name">Name:</label><br>
-                    <input type="text" id="name" name="name"><br>
-                    <label for="email">Email:</label><br>
-                    <input type="email" id="email" name="email"><br>
-                    <label for="expertise">Area of Expertise:</label><br>
-                    <input type="text" id="expertise" name="expertise"><br>
+                    <input type="text" id="name" name="name" value="{{ current_user.name }}"><br>
+                    <label for="username">username:</label><br>
+                    <input type="text" id="username" name="username" value="{{ current_user.uname }}" disabled><br>
+                    <label for="farm-name">Email:</label><br>
+                    <input type="text" id="email" name="email" value="{{ current_user.email }}"><br>
                     <label for="location">Location:</label><br>
-                    <input type="text" id="location" name="location"><br>
-                    <button class="button" type="submit">Save Changes</button>
+                    <input type="text" id="location" name="location" value="{{ current_user.loc }}"><br>
+                    <button class="button" type="button" onclick="confirmSave()">Save Changes</button>
                 </form>
             </div>
         </div>
@@ -39,6 +40,15 @@
     <footer>
         <p>&copy; 2024 AgriSense. All rights reserved.</p>
     </footer>
-    <script src="js/script.js"></script>
+    <script src="js/farmer_profile.js"></script>
+    <script>
+        function confirmSave() {
+            if (confirm("Are you sure you want to save this?")) {
+                document.getElementById("profileForm").submit();
+            } else {
+                return false;
+            }
+        }
+    </script>
 </body>
 </html>

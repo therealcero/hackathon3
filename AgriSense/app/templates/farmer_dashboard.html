@@ -39,19 +39,23 @@
                 <div id="related-articles">
                     <h3>Related Articles</h3>
                     {% for result in results %}
-                        <p><a href="{{ result.articles }}" class="articles-values" target="_blank" >{{ result.name }}</a></p>
+                        <p><a href="{{ result.articles }}" class="articles-values" target="_blank">{{ result.name }}</a></p>
                     {% endfor %}
                 </div>
                 <div id="related-videos">
                     <h3>Related Videos</h3>
-
-                        {% for result in results %}
-
-                                {{ result.link|safe }}
- 
-                        {% endfor %}
-
+                    {% for result in results %}
+                        {{ result.link|safe }}
+                    {% endfor %}
                 </div>
+            </div>
+            <div class="card" id="image-search-section">
+                <h2>Image Search</h2>
+                <form id="image-search-form" method="POST" enctype="multipart/form-data" action="{% url 'image_search' %}">
+                    {% csrf_token %}
+                    <input type="file" id="image-input" name="image" accept="image/*" style="display: none;" onchange="submitImageForm()">
+                    <button type="button" class="button" onclick="document.getElementById('image-input').click()">Upload Image</button>
+                </form>
             </div>
         </div>
     </main>
@@ -69,6 +73,52 @@
             <button class="button" onclick="sendMessage()">Send</button>
         </div>
     </div>
-    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+        function submitImageForm() {
+            const form = document.getElementById('image-search-form');
+            const formData = new FormData(form);
+            
+            fetch(form.action, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken')  // Ensure you include the CSRF token
+                },
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    // Automatically fill the search bar with the result and submit the search form
+                    const searchInput = document.getElementById('search-crops');
+                    searchInput.value = data.search_query;
+                    document.getElementById('search-form').submit();
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Function to get CSRF token
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    </script>
 </body>
 </html>
