@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Articles - AgriSense</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>AgriSense</h1>
+        <nav>
+            <ul>
+                <li><a href="expert_chat.html">Chatbox</a></li>
+                <li><a href="expert_profile.html">Profile</a></li>
+                <li><a href="expert_upload.html">Upload Articles</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="card">
+                <h2>Upload Articles</h2>
+                <form>
+                    <label for="title">Title:</label><br>
+                    <input type="text" id="title" name="title"><br>
+                    <label for="content">Content:</label><br>
+                    <textarea id="content" name="content" rows="10"></textarea><br>
+                    <label for="file">Upload File:</label><br>
+                    <input type="file" id="file" name="file"><br>
+                    <button class="button" type="submit">Upload</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 AgriSense. All rights reserved.</p>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+</html>

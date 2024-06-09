@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard - AgriSense</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>AgriSense</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'farmer_dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'farmer_chat' %}">Expert Chat</a></li>
+                <li><a href="{% url 'farmer_notification' %}">Notifications</a></li>
+                <li><a href="{% url 'farmer_profile' %}">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="card welcome-card">
+                <h2>Welcome to AgriSense</h2>
+                <p>Get started by searching for crops or viewing recommendations.</p>
+            </div>
+            <div class="card" id="search-section">
+                <h2>Search Crops</h2>
+                <form id="search-form" method="POST" action="{% url 'search_crops' %}">
+                    {% csrf_token %}
+                    <input type="text" name="search_query" placeholder="Enter crop name..." id="search-crops">
+                    <button type="submit" class="button">Search</button>
+                </form>
+                <div id="recommendations">
+                    <h3>Recommendations</h3>
+                    <p>AI-powered recommendations based on current trends and your farm data.</p>
+                </div>
+                <div id="related-articles">
+                    <h3>Related Articles</h3>
+                    {% for result in results %}
+                        <p><a href="{{ result.articles }}" class="articles-values" target="_blank" >{{ result.name }}</a></p>
+                    {% endfor %}
+                </div>
+                <div id="related-videos">
+                    <h3>Related Videos</h3>
+
+                        {% for result in results %}
+
+                                {{ result.link|safe }}
+ 
+                        {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 AgriSense. All rights reserved.</p>
+    </footer>
+    <div id="chatbot">
+        <button id="chatbot-icon" onclick="toggleChat()">💬</button>
+        <div id="chatbot-window">
+            <h3>Chatbot</h3>
+            <div id="chat-content">
+                <!-- Chat messages will go here -->
+            </div>
+            <input type="text" id="chat-input" placeholder="Type your message...">
+            <button class="button" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

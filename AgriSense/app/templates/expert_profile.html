@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - AgriSense</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>AgriSense</h1>
+        <nav>
+            <ul>
+                <li><a href="expert_chat.html">Chatbox</a></li>
+                <li><a href="expert_profile.html">Profile</a></li>
+                <li><a href="expert_upload.html">Upload Articles</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="card">
+                <h2>Profile</h2>
+                <form>
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name"><br>
+                    <label for="email">Email:</label><br>
+                    <input type="email" id="email" name="email"><br>
+                    <label for="expertise">Area of Expertise:</label><br>
+                    <input type="text" id="expertise" name="expertise"><br>
+                    <label for="location">Location:</label><br>
+                    <input type="text" id="location" name="location"><br>
+                    <button class="button" type="submit">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 AgriSense. All rights reserved.</p>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+</html>

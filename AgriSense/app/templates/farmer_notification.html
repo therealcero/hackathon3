@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - AgriSense</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>AgriSense</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'farmer_dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'farmer_chat' %}">Expert Chat</a></li>
+                <li><a href="{% url 'farmer_notification' %}">Notifications</a></li>
+                <li><a href="{% url 'farmer_profile' %}">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="card">
+                <h2>Notifications</h2>
+                <ul id="notifications-list">
+                    <li>Weather alert: Heavy rainfall expected tomorrow.</li>
+                    <li>Task reminder: Fertilize the wheat crops.</li>
+                    <li>New method: Try the new organic pesticide.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 AgriSense. All rights reserved.</p>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+</html>

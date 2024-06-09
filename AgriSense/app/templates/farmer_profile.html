@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - AgriSense</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>AgriSense</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'farmer_dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'farmer_chat' %}">Expert Chat</a></li>
+                <li><a href="{% url 'farmer_notification' %}">Notifications</a></li>
+                <li><a href="{% url 'farmer_profile' %}">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="card">
+                <h2>Profile</h2>
+                <form id="profileForm" method="POST" action="{% url 'farmer_profile_save' %}">
+                    {% csrf_token %}
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name" value="{{ current_user.name }}"><br>
+                    <label for="username">username:</label><br>
+                    <input type="text" id="username" name="username" value="{{ current_user.uname }}" disabled><br>
+                    <label for="farm-name">Email:</label><br>
+                    <input type="text" id="email" name="email" value="{{ current_user.email }}"><br>
+                    <label for="location">Location:</label><br>
+                    <input type="text" id="location" name="location" value="{{ current_user.loc }}"><br>
+                    <button class="button" type="button" onclick="confirmSave()">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 AgriSense. All rights reserved.</p>
+    </footer>
+    <script src="js/farmer_profile.js"></script>
+    <script>
+        function confirmSave() {
+            if (confirm("Are you sure you want to save this?")) {
+                document.getElementById("profileForm").submit();
+            } else {
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

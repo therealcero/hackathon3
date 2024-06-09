@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Chat - AgriSense</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>AgriSense</h1>
+        <nav>
+            <ul>
+                <li><a href="expert_chat.html">Chatbox</a></li>
+                <li><a href="expert_profile.html">Profile</a></li>
+                <li><a href="expert_upload.html">Upload Articles</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="card">
+                <h2>Expert Chat</h2>
+                <div id="chat-content">
+                    <!-- Chat messages will go here -->
+                </div>
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button class="button" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 AgriSense. All rights reserved.</p>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+</html>
